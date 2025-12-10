@@ -1,0 +1,151 @@
+<section class="interactions animate-fade-in">
+  <header>
+    <div>
+      <h1>
+        <i class="fas fa-comments"></i> Interactions
+      </h1>
+      <p>Track customer communications and interactions</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary" (click)="openCreateForm()">
+        <i class="fas fa-plus"></i> New Interaction
+      </button>
+    </div>
+  </header>
+
+  <div class="filters">
+    <form [formGroup]="filterForm">
+      <select formControlName="customerId" class="form-control">
+        <option value="">All Customers</option>
+        <option *ngFor="let customer of customers()" [value]="customer.id">
+          {{ customer.name }}
+        </option>
+      </select>
+    </form>
+  </div>
+
+  <div class="content">
+    <section class="list" *ngIf="!loading(); else loadingTpl">
+      <article
+        *ngFor="let interaction of interactions(); let i = index"
+        (click)="selectedInteraction.set(interaction)"
+        [class.selected]="selectedInteraction()?.id === interaction.id"
+        [style.animation-delay.ms]="i * 50"
+        class="animate-slide-in"
+      >
+        <div class="interaction-icon" [ngClass]="'icon-' + interaction.type.toLowerCase()">
+          <i [ngClass]="getInteractionIcon(interaction.type)"></i>
+        </div>
+        <div class="interaction-content">
+          <h3>{{ interaction.subject }}</h3>
+          <p>
+            <i class="fas fa-tag"></i> {{ interaction.type }}
+            <span class="separator">•</span>
+            <i class="fas fa-user"></i> {{ interaction.userFullName || 'Unknown' }}
+          </p>
+        </div>
+        <div class="meta">
+          <small>
+            <i class="fas fa-calendar"></i> {{ interaction.interactionDate | date: 'short' }}
+          </small>
+        </div>
+      </article>
+      <p *ngIf="!interactions().length" class="empty">No interactions found.</p>
+    </section>
+
+    <aside *ngIf="selectedInteraction() as interaction" class="detail animate-scale-in">
+      <header>
+        <div>
+          <h2>{{ interaction.subject }}</h2>
+          <span class="badge badge-info">{{ interaction.type }}</span>
+        </div>
+        <div class="action-buttons">
+          <button class="btn btn-sm btn-secondary" (click)="openEditForm(interaction)">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteInteraction(interaction.id)">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
+      </header>
+
+      <div class="info-section">
+        <div class="info-item">
+          <i class="fas fa-tag"></i>
+          <div>
+            <strong>Type</strong>
+            <p>{{ interaction.type }}</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-calendar"></i>
+          <div>
+            <strong>Date</strong>
+            <p>{{ interaction.interactionDate | date: 'medium' }}</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-user"></i>
+          <div>
+            <strong>User</strong>
+            <p>{{ interaction.userFullName || 'Unknown' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <section *ngIf="interaction.notes">
+        <h3><i class="fas fa-sticky-note"></i> Notes</h3>
+        <div class="notes-box">
+          <p>{{ interaction.notes }}</p>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Create/Edit Form Modal -->
+  <div *ngIf="showForm()" class="modal-overlay" (click)="showForm.set(false)">
+    <div class="modal-content animate-scale-in" (click)="$event.stopPropagation()">
+      <h2>{{ isEditing() ? 'Edit Interaction' : 'Create New Interaction' }}</h2>
+      <form [formGroup]="interactionForm" (ngSubmit)="saveInteraction()">
+        <div class="form-group">
+          <label><i class="fas fa-tag"></i> Type *</label>
+          <select formControlName="type" class="form-control">
+            <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-heading"></i> Subject *</label>
+          <input formControlName="subject" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Customer *</label>
+          <select formControlName="customerId" class="form-control">
+            <option value="0">Select Customer</option>
+            <option *ngFor="let customer of customers()" [value]="customer.id">
+              {{ customer.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-calendar"></i> Date *</label>
+          <input type="date" formControlName="interactionDate" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-align-left"></i> Notes</label>
+          <textarea formControlName="notes" class="form-control" rows="4"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" (click)="showForm.set(false)">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #loadingTpl>
+    <div class="loading">
+      <div class="spinner"></div>
+      Loading interactions...
+    </div>
+  </ng-template>
+</section>

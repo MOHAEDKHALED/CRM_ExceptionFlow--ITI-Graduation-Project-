@@ -1,0 +1,133 @@
+﻿@model CRM_ExceptionFlow.Models.User
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2><i class="fas fa-user text-info"></i> User Details</h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </div>
+
+    <!-- User Info Card -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">User Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Username:</strong> @Model.Username</p>
+                    <p><strong>Full Name:</strong> @Model.FullName</p>
+                    <p><strong>Email:</strong> @Model.Email</p>
+                    <p>
+                        <strong>Role:</strong>
+                        <span class="badge @(Model.Role == "Admin" ? "bg-danger" : Model.Role == "Manager" ? "bg-warning" : "bg-info")">
+                            @Model.Role
+                        </span>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Department:</strong> @Model.Department</p>
+                    <p>
+                        <strong>Status:</strong>
+                        @if (Model.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Inactive</span>
+                        }
+                    </p>
+                    <p><strong>Created:</strong> @Model.CreatedAt.ToString("dd MMM yyyy")</p>
+                    <p>
+                        <strong>Last Login:</strong>
+                        @if (Model.LastLogin.HasValue)
+                        {
+                            @Model.LastLogin.Value.ToString("dd MMM yyyy, hh:mm tt")
+                        }
+                        else
+                        {
+                            <em class="text-muted">Never</em>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h6>Assigned Customers</h6>
+                    <h2>@(Model.Customers?.Count ?? 0)</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h6>Assigned Deals</h6>
+                    <h2>@(Model.Deals?.Count ?? 0)</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h6>Reported Exceptions</h6>
+                    <h2>@(Model.ReportedExceptions?.Count ?? 0)</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+@if (Model.ReportedExceptions != null && Model.ReportedExceptions.Any())
+{
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0"><i class="fas fa-history"></i> Recent Exceptions</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Module</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ex in Model.ReportedExceptions.OrderByDescending(e => e.ReportedAt).Take(10))
+                            {
+                                <tr>
+                                    <td>#@ex.Id</td>
+                                    <td><span class="badge bg-secondary">@ex.Module</span></td>
+                                    <td>@ex.Title</td>
+                                    <td><span class="badge status-@ex.Status.ToLower()">@ex.Status</span></td>
+                                    <td>@ex.ReportedAt.ToString("dd MMM yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+}

@@ -1,0 +1,146 @@
+﻿@model IEnumerable<CRM_ExceptionFlow.Models.Interaction>
+
+@{
+    ViewData["Title"] = "Interactions";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2><i class="fas fa-comments text-info"></i> Interactions Management</h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Log New Interaction
+            </a>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <form method="get" asp-action="Index">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Type</label>
+                        <select name="type" class="form-select">
+                            <option value="">All Types</option>
+                            <option value="Call" selected="@(ViewBag.Type == "Call")">Call</option>
+                            <option value="Email" selected="@(ViewBag.Type == "Email")">Email</option>
+                            <option value="Meeting" selected="@(ViewBag.Type == "Meeting")">Meeting</option>
+                            <option value="Note" selected="@(ViewBag.Type == "Note")">Note</option>
+                            <option value="Task" selected="@(ViewBag.Type == "Task")">Task</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Customer</label>
+                        <select name="customerId" class="form-select">
+                            <option value="">All Customers</option>
+                            @foreach (var customer in ViewBag.Customers)
+                            {
+                                <option value="@customer.Id" selected="@(ViewBag.CustomerId == customer.Id)">@customer.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">&nbsp;</label>
+                        <div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-filter"></i> Filter
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">Clear</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Interactions Table -->
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            @if (Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Type</th>
+                                <th>Subject</th>
+                                <th>Customer</th>
+                                <th>User</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <span class="badge @(item.Type == "Call" ? "bg-primary" :
+                                                                                                            item.Type == "Email" ? "bg-info" :
+                                                                                                            item.Type == "Meeting" ? "bg-success" :
+                                                                                                            item.Type == "Note" ? "bg-warning" : "bg-secondary")">
+                                    <i class="fas fa-@(item.Type == "Call" ? "phone" :
+                                                                                                      item.Type == "Email" ? "envelope" :
+                                                                                                      item.Type == "Meeting" ? "users" :
+                                                                                                      item.Type == "Note" ? "sticky-note" : "tasks")"></i>
+                                    @item.Type
+                                </span>
+                            </td>
+                            <td>
+                                <strong>@item.Subject</strong>
+                                @if (!string.IsNullOrEmpty(item.Notes))
+                                        {
+                                            <br />
+                                            <small class="text-muted">@item.Notes.Substring(0, Math.Min(50, item.Notes.Length))...</small>
+                                        }
+                                    </td>
+                                    <td>@item.Customer?.Name</td>
+                                    <td>@item.User?.FullName</td>
+                                    <td>@item.InteractionDate.ToString("dd MMM yyyy, hh:mm tt")</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger" onclick="deleteInteraction(@item.Id)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="text-center py-5">
+                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No interactions found</h5>
+                    <a asp-action="Create" class="btn btn-primary mt-3">
+                        <i class="fas fa-plus"></i> Log First Interaction
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function deleteInteraction(id) {
+            if (confirm('Are you sure you want to delete this interaction?')) {
+                fetch(`/Interactions/Delete/${id}`, {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                });
+            }
+        }
+    </script>
+}

@@ -1,0 +1,100 @@
+﻿@model CRM_ExceptionFlow.Models.Customer
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2><i class="fas fa-user text-primary"></i> Customer Details</h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </div>
+
+    <!-- Customer Info -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Customer Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Name:</strong> @Model.Name</p>
+                    <p><strong>Email:</strong> @Model.Email</p>
+                    <p><strong>Phone:</strong> @Model.Phone</p>
+                    <p><strong>Company:</strong> @Model.Company</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Address:</strong> @Model.Address</p>
+                    <p><strong>Status:</strong> <span class="badge bg-success">@Model.Status</span></p>
+                    <p><strong>Assigned To:</strong> @Model.AssignedToUser?.FullName</p>
+                    <p><strong>Created:</strong> @Model.CreatedAt.ToString("dd MMM yyyy")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deals -->
+    @if (Model.Deals != null && Model.Deals.Any())
+    {
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="fas fa-handshake"></i> Deals (@Model.Deals.Count)</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Amount</th>
+                            <th>Stage</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var deal in Model.Deals)
+                        {
+                            <tr>
+                                <td>@deal.Title</td>
+                                <td>$@deal.Amount.ToString("N2")</td>
+                                <td><span class="badge bg-info">@deal.Stage</span></td>
+                                <td><span class="badge bg-warning">@deal.Priority</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    <!-- Interactions -->
+    @if (Model.Interactions != null && Model.Interactions.Any())
+    {
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-comments"></i> Recent Interactions (@Model.Interactions.Count)</h5>
+            </div>
+            <div class="card-body">
+                @foreach (var interaction in Model.Interactions.OrderByDescending(i => i.InteractionDate).Take(5))
+                {
+                    <div class="mb-3 pb-3 border-bottom">
+                        <div class="d-flex justify-content-between">
+                            <strong>@interaction.Subject</strong>
+                            <small class="text-muted">@interaction.InteractionDate.ToString("dd MMM yyyy")</small>
+                        </div>
+                        <p class="mb-0 text-muted">@interaction.Notes</p>
+                        <small><span class="badge bg-secondary">@interaction.Type</span></small>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

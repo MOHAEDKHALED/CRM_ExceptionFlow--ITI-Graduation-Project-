@@ -1,0 +1,256 @@
+<section class="exceptions animate-fade-in">
+  <header>
+    <div>
+      <h1>Exceptions</h1>
+      <p>Monitor and triage runtime issues</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary" (click)="openCreateForm()">
+        <i class="fas fa-plus"></i> New Exception
+      </button>
+    </div>
+  </header>
+
+  <div class="filters">
+    <form [formGroup]="filters">
+      <select formControlName="status" class="form-control">
+        <option value="">All Statuses</option>
+        <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+      </select>
+      <select formControlName="priority" class="form-control">
+        <option value="">All Priorities</option>
+        <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
+      </select>
+    </form>
+  </div>
+
+  <div class="content">
+    <section class="list" *ngIf="!loading(); else loadingTpl">
+      <article
+        *ngFor="let item of exceptions(); let i = index"
+        (click)="selectException(item)"
+        [class.selected]="selected()?.id === item.id"
+        [style.animation-delay.ms]="i * 50"
+        class="animate-slide-in"
+      >
+        <div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.module }} • {{ item.projectId }}</p>
+          <small>Reported by: {{ item.reportedBy || 'Unknown' }}</small>
+        </div>
+        <div class="meta">
+          <span class="badge" [ngClass]="'badge-' + item.priority.toLowerCase()">
+            {{ item.priority }}
+          </span>
+          <span class="badge badge-secondary">{{ item.status }}</span>
+          <small>{{ item.reportedAt | date: 'short' }}</small>
+        </div>
+      </article>
+      <p *ngIf="!exceptions().length" class="empty">No exceptions found.</p>
+    </section>
+
+    <aside *ngIf="selected() as detail" class="detail animate-scale-in">
+      <header>
+        <div>
+          <h2>{{ detail.title }}</h2>
+          <div class="badges">
+            <span class="badge" [ngClass]="'badge-' + detail.priority.toLowerCase()">
+              {{ detail.priority }}
+            </span>
+            <span class="badge badge-info">{{ detail.status }}</span>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button 
+            class="btn btn-sm btn-primary" 
+            (click)="generateAIRecommendation(detail.id)"
+            [disabled]="loadingRecommendations()"
+            title="Generate AI Recommendation using AIRecommendationService">
+            <i class="fas fa-robot" *ngIf="!loadingRecommendations()"></i>
+            <div class="spinner-small" *ngIf="loadingRecommendations()"></div>
+            {{ loadingRecommendations() ? 'Generating...' : 'Get AI Recommendation' }}
+          </button>
+          <button class="btn btn-sm btn-secondary" (click)="openEditForm(detail)">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button 
+            *ngIf="canDelete" 
+            class="btn btn-sm btn-danger" 
+            (click)="deleteException(detail.id)">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
+      </header>
+
+      <div class="info-section">
+        <p class="status">
+          <i class="fas fa-user"></i> <strong>Reported by:</strong> {{ detail.reportedBy || 'Unknown' }}
+        </p>
+        <p class="status" *ngIf="detail.assignedTo">
+          <i class="fas fa-user-tie"></i> <strong>Assigned to:</strong> {{ detail.assignedTo }}
+        </p>
+        <p class="status">
+          <i class="fas fa-calendar"></i> <strong>Reported at:</strong> {{ detail.reportedAt | date: 'medium' }}
+        </p>
+        <p class="status" *ngIf="detail.resolvedAt">
+          <i class="fas fa-check-circle"></i> <strong>Resolved at:</strong> {{ detail.resolvedAt | date: 'medium' }}
+        </p>
+      </div>
+
+      <section>
+        <h3><i class="fas fa-file-alt"></i> Description</h3>
+        <div class="description-box">
+          <p>{{ detail.description }}</p>
+        </div>
+        <div *ngIf="detail.stackTrace" class="stack-trace">
+          <h4>Stack Trace</h4>
+          <pre>{{ detail.stackTrace }}</pre>
+        </div>
+        <div *ngIf="detail.resolutionNotes" class="resolution-notes">
+          <h4><i class="fas fa-sticky-note"></i> Resolution Notes</h4>
+          <p>{{ detail.resolutionNotes }}</p>
+        </div>
+      </section>
+
+      <section class="recommendations-section">
+        <h3>
+          <i class="fas fa-robot"></i> AI Recommendations
+          <span class="count">{{ recommendations().length }}</span>
+        </h3>
+        <div *ngIf="recommendations().length; else noRecommendations" class="recommendations-list">
+          <div *ngFor="let rec of recommendations()" class="recommendation-card animate-scale-in">
+            <div class="recommendation-header">
+              <span class="badge" [ngClass]="rec.confidenceScore > 0.7 ? 'badge-success' : 'badge-warning'">
+                {{ (rec.confidenceScore * 100).toFixed(0) }}% Confidence
+              </span>
+              <div class="recommendation-meta">
+                <small><i class="fas fa-tag"></i> {{ rec.source }}</small>
+                <small><i class="fas fa-calendar"></i> {{ rec.generatedAt | date: 'short' }}</small>
+              </div>
+            </div>
+            <p class="recommendation-text">{{ rec.recommendationText }}</p>
+            <div class="recommendation-footer">
+              <small><i class="fas fa-brain"></i> Model: {{ rec.model }}</small>
+              <small *ngIf="rec.isFromDatabase"><i class="fas fa-database"></i> From Database</small>
+            </div>
+          </div>
+        </div>
+        <ng-template #noRecommendations>
+          <div class="empty-recommendations">
+            <i class="fas fa-robot"></i>
+            <p>No AI recommendations yet.</p>
+            <button 
+              class="btn btn-primary" 
+              (click)="generateAIRecommendation(detail.id)"
+              [disabled]="loadingRecommendations()">
+              <i class="fas fa-magic" *ngIf="!loadingRecommendations()"></i>
+              <div class="spinner-small" *ngIf="loadingRecommendations()"></div>
+              {{ loadingRecommendations() ? 'Generating AI Recommendation...' : 'Generate AI Recommendation' }}
+            </button>
+            <small>This will call the AIRecommendationService to generate a new recommendation</small>
+          </div>
+        </ng-template>
+      </section>
+
+      <section class="history-section">
+        <h3>
+          <i class="fas fa-history"></i> History
+          <span class="count">{{ detail.history.length }}</span>
+        </h3>
+        <div *ngIf="detail.history.length; else noHistory" class="history-list">
+          <div *ngFor="let entry of detail.history" class="history-item animate-slide-in">
+            <div class="history-icon">
+              <i class="fas fa-circle"></i>
+            </div>
+            <div class="history-content">
+              <strong>{{ entry.status }}</strong>
+              <p>{{ entry.notes || 'No notes' }}</p>
+              <small>
+                <i class="fas fa-user"></i> {{ entry.changedByUserName }}
+                <i class="fas fa-clock"></i> {{ entry.changedAt | date: 'short' }}
+              </small>
+            </div>
+          </div>
+        </div>
+        <ng-template #noHistory>
+          <p class="empty">No history yet.</p>
+        </ng-template>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Create/Edit Form Modal -->
+  <div *ngIf="showForm()" class="modal-overlay" (click)="showForm.set(false)">
+    <div class="modal-content animate-scale-in" (click)="$event.stopPropagation()">
+      <h2>{{ isEditing() ? 'Edit Exception' : 'Create New Exception' }}</h2>
+      <form [formGroup]="exceptionForm" (ngSubmit)="saveException()">
+        <div class="row">
+          <div class="col-md-6">
+            <label>Project ID *</label>
+            <input formControlName="projectId" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label>Module *</label>
+            <input formControlName="module" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Title *</label>
+          <input formControlName="title" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label>Description *</label>
+          <textarea formControlName="description" class="form-control" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Stack Trace</label>
+          <textarea formControlName="stackTrace" class="form-control" rows="6"></textarea>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label>Status *</label>
+            <select formControlName="status" class="form-control">
+              <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>Priority *</label>
+            <select formControlName="priority" class="form-control">
+              <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>Assigned To</label>
+            <select formControlName="assignedToUserId" class="form-control">
+              <option value="0">Unassigned</option>
+              <option *ngFor="let user of users()" [value]="user.id">
+                {{ user.fullName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Resolution Notes</label>
+          <textarea formControlName="resolutionNotes" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" (click)="showForm.set(false)" [disabled]="saving()">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="saving()">
+            <span *ngIf="!saving()">Save</span>
+            <span *ngIf="saving()" class="saving-indicator">
+              <div class="spinner-small"></div>
+              Saving...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #loadingTpl>
+    <div class="loading">
+      <div class="spinner"></div>
+      Loading exceptions...
+    </div>
+  </ng-template>
+</section>

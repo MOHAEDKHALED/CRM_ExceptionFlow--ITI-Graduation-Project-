@@ -1,0 +1,148 @@
+﻿@model CRM_ExceptionFlow.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid mt-4">
+    <h2 class="mb-4"><i class="fas fa-chart-line"></i> Dashboard</h2>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6>Total Customers</h6>
+                            <h2>@Model.TotalCustomers</h2>
+                        </div>
+                        <i class="fas fa-users fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6>Active Deals</h6>
+                            <h2>@Model.ActiveDeals</h2>
+                        </div>
+                        <i class="fas fa-handshake fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-info text-white shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6>Total Revenue</h6>
+                            <h2>$@Model.TotalRevenue.ToString("N0")</h2>
+                        </div>
+                        <i class="fas fa-dollar-sign fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6>Open Exceptions</h6>
+                            <h2>@Model.OpenExceptions</h2>
+                        </div>
+                        <i class="fas fa-exclamation-triangle fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exceptions Status -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning">
+                    <h5 class="mb-0"><i class="fas fa-tasks"></i> Exception Status Overview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <h3 class="text-danger">@Model.OpenExceptions</h3>
+                            <p>Open</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="text-warning">@Model.InProgressExceptions</h3>
+                            <p>In Progress</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="text-success">@Model.ResolvedExceptions</h3>
+                            <p>Resolved</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h3>@(Model.OpenExceptions + Model.InProgressExceptions + Model.ResolvedExceptions)</h3>
+                            <p>Total</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Exceptions -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-clock"></i> Recent Exceptions</h5>
+                </div>
+                <div class="card-body p-0">
+                    @if (Model.RecentExceptions.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Module</th>
+                                        <th>Title</th>
+                                        <th>Status</th>
+                                        <th>Reported By</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var ex in Model.RecentExceptions)
+                                    {
+                                        <tr>
+                                            <td>#@ex.Id</td>
+                                            <td><span class="badge bg-secondary">@ex.Module</span></td>
+                                            <td>@ex.Title</td>
+                                            <td><span class="badge status-@ex.Status.ToLower()">@ex.Status</span></td>
+                                            <td>@ex.ReportedByUser?.FullName</td>
+                                            <td>@ex.ReportedAt.ToString("dd MMM")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-4">
+                            <p class="text-muted">No recent exceptions</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

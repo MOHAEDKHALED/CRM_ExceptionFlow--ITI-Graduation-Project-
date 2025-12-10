@@ -1,0 +1,97 @@
+<div class="login-container">
+  <div class="login-background">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <div class="login-card animate-scale-in">
+    <div class="login-header">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h1>CRM Exception Flow</h1>
+        <p>Welcome back! Please sign in to continue</p>
+      </div>
+    </div>
+
+    <div class="login-body">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label>
+            <i class="fas fa-user"></i> Username
+          </label>
+          <input 
+            type="text" 
+            formControlName="username" 
+            placeholder="Enter your username"
+            class="form-input"
+            [class.error]="form.controls.username.touched && form.controls.username.invalid" />
+          <small *ngIf="form.controls.username.touched && form.controls.username.invalid" class="error-message">
+            Username is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <i class="fas fa-lock"></i> Password
+          </label>
+          <div class="password-input-wrapper">
+            <input 
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password" 
+              placeholder="Enter your password"
+              class="form-input"
+              [class.error]="form.controls.password.touched && form.controls.password.invalid" />
+            <button 
+              type="button" 
+              class="password-toggle"
+              (click)="showPassword = !showPassword">
+              <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+          <small *ngIf="form.controls.password.touched && form.controls.password.invalid" class="error-message">
+            Password is required
+          </small>
+        </div>
+
+        <div class="login-error" *ngIf="errorMessage()">
+          <i class="fas fa-exclamation-circle"></i>
+          {{ errorMessage() }}
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn-login"
+          [disabled]="isSubmitting()">
+          <span *ngIf="!isSubmitting()">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </span>
+          <span *ngIf="isSubmitting()" class="loading-content">
+            <div class="spinner-small"></div>
+            Signing in...
+          </span>
+        </button>
+
+        <div class="divider">
+          <span>or</span>
+        </div>
+
+        <div class="register-link">
+          <p>Don't have an account?</p>
+          <a routerLink="/register" class="btn-register-link">
+            <i class="fas fa-user-plus"></i> Create Account
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <div class="login-footer">
+      <p>
+        <i class="fas fa-info-circle"></i>
+        Default credentials: admin / Admin@123
+      </p>
+    </div>
+  </div>
+</div>

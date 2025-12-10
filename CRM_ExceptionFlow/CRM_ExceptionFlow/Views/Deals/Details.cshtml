@@ -1,0 +1,51 @@
+﻿@model CRM_ExceptionFlow.Models.Deal
+
+@{
+    ViewData["Title"] = "Deal Details";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2><i class="fas fa-handshake text-success"></i> Deal Details</h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Deal Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Title:</strong> @Model.Title</p>
+                    <p><strong>Customer:</strong> @Model.Customer?.Name</p>
+                    <p><strong>Amount:</strong> <strong class="text-success">$@Model.Amount.ToString("N2")</strong></p>
+                    <p><strong>Stage:</strong> <span class="badge bg-info">@Model.Stage</span></p>
+                    <p><strong>Priority:</strong> <span class="badge bg-warning">@Model.Priority</span></p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Assigned To:</strong> @Model.AssignedToUser?.FullName</p>
+                    <p><strong>Expected Close Date:</strong> @Model.ExpectedCloseDate?.ToString("dd MMM yyyy")</p>
+                    <p><strong>Created:</strong> @Model.CreatedAt.ToString("dd MMM yyyy")</p>
+                    <p><strong>Last Updated:</strong> @Model.UpdatedAt.ToString("dd MMM yyyy")</p>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <hr>
+                <h6 class="fw-bold">Description:</h6>
+                <p>@Model.Description</p>
+            }
+        </div>
+    </div>
+</div>

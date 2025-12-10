@@ -1,0 +1,53 @@
+<nav class="navbar" *ngIf="isAuthenticated()">
+  <div class="navbar__brand">
+    <span class="navbar__logo">CRM</span>
+    <span class="navbar__title">Exception Flow</span>
+  </div>
+
+  <ul class="navbar__links">
+    <!-- Admin sees only Users -->
+    <li *ngIf="user()?.role === 'Admin'">
+      <a routerLink="/users" routerLinkActive="active">
+        <i class="fas fa-user-cog"></i> Users
+      </a>
+    </li>
+    
+    <!-- Manager and Employee see other links -->
+    <ng-container *ngIf="user()?.role !== 'Admin'">
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <i class="fas fa-home"></i> Dashboard
+        </a>
+      </li>
+      <li *ngIf="user()?.role === 'Manager'">
+        <a routerLink="/customers" routerLinkActive="active">
+          <i class="fas fa-users"></i> Customers
+        </a>
+      </li>
+      <li *ngIf="user()?.role === 'Manager'">
+        <a routerLink="/deals" routerLinkActive="active">
+          <i class="fas fa-handshake"></i> Deals
+        </a>
+      </li>
+      <li>
+        <a routerLink="/interactions" routerLinkActive="active">
+          <i class="fas fa-comments"></i> Interactions
+        </a>
+      </li>
+      <li>
+        <a routerLink="/exceptions" routerLinkActive="active">
+          <i class="fas fa-exclamation-triangle"></i> Exceptions
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+
+  <div class="navbar__profile" *ngIf="user() as currentUser">
+    <div class="navbar__profile-info">
+      <span class="name">{{ currentUser.fullName }}</span>
+      <small class="role">{{ currentUser.role }}</small>
+    </div>
+    <button type="button" (click)="logout()">Logout</button>
+  </div>
+</nav>
+

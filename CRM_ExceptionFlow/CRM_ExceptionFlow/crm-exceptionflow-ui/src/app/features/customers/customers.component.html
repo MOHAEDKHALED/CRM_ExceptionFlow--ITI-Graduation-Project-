@@ -1,0 +1,199 @@
+<section class="customers animate-fade-in">
+  <header>
+    <div>
+      <h1>Customers</h1>
+      <p>Manage your customer relationships</p>
+    </div>
+    <div class="header-actions">
+      <button *ngIf="canEdit" class="btn btn-primary" (click)="openCreateForm()">
+        <i class="fas fa-plus"></i> New Customer
+      </button>
+    </div>
+  </header>
+
+  <div class="filters">
+    <form [formGroup]="filterForm">
+      <input 
+        type="search" 
+        placeholder="Search by name, email, or company..." 
+        formControlName="search"
+        class="form-control" />
+      <select formControlName="status" class="form-control">
+        <option value="">All Statuses</option>
+        <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+      </select>
+    </form>
+  </div>
+
+  <div class="content">
+    <section class="list" *ngIf="!loading(); else loadingTpl">
+      <article
+        *ngFor="let customer of customers(); let i = index"
+        (click)="selectCustomer(customer)"
+        [class.selected]="selectedCustomer()?.id === customer.id"
+        [style.animation-delay.ms]="i * 50"
+        class="animate-slide-in"
+      >
+        <div>
+          <h3>{{ customer.name }}</h3>
+          <p>{{ customer.company || '—' }}</p>
+          <small>{{ customer.email || 'No email' }}</small>
+        </div>
+        <div class="meta">
+          <span class="badge" [ngClass]="'badge-' + customer.status.toLowerCase()">
+            {{ customer.status }}
+          </span>
+          <small>Owner: {{ customer.assignedTo || '—' }}</small>
+        </div>
+      </article>
+      <p *ngIf="!customers().length" class="empty">No customers match your filters.</p>
+    </section>
+
+    <aside *ngIf="selectedCustomer() as customer" class="details animate-scale-in">
+      <header>
+        <div>
+          <h2>{{ customer.name }}</h2>
+          <p class="subtitle">{{ customer.company || 'No company' }}</p>
+        </div>
+        <div class="action-buttons" *ngIf="canEdit">
+          <button class="btn btn-sm btn-secondary" (click)="openEditForm(customer)">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteCustomer(customer.id)">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
+      </header>
+
+      <div class="info-section">
+        <h3>Contact Information</h3>
+        <ul>
+          <li>
+            <i class="fas fa-envelope"></i>
+            <strong>Email:</strong> 
+            <span>{{ customer.email || 'Not set' }}</span>
+          </li>
+          <li>
+            <i class="fas fa-phone"></i>
+            <strong>Phone:</strong> 
+            <span>{{ customer.phone || 'Not set' }}</span>
+          </li>
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            <strong>Address:</strong> 
+            <span>{{ customer.address || 'Not set' }}</span>
+          </li>
+          <li>
+            <i class="fas fa-user-tie"></i>
+            <strong>Status:</strong> 
+            <span class="badge" [ngClass]="'badge-' + customer.status.toLowerCase()">
+              {{ customer.status }}
+            </span>
+          </li>
+          <li>
+            <i class="fas fa-user"></i>
+            <strong>Owner:</strong> 
+            <span>{{ customer.assignedTo || 'Unassigned' }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <section class="deals-section">
+        <h3>
+          <i class="fas fa-handshake"></i> Latest Deals
+          <span class="count">{{ customer.deals.length }}</span>
+        </h3>
+        <div *ngIf="customer.deals.length; else noDeals" class="deals-list">
+          <div *ngFor="let deal of customer.deals" class="deal-item">
+            <div>
+              <strong>{{ deal.title }}</strong>
+              <p>{{ deal.amount | currency }} • {{ deal.stage }}</p>
+            </div>
+            <span class="badge badge-info">{{ deal.priority }}</span>
+          </div>
+        </div>
+        <ng-template #noDeals>
+          <p class="empty">No deals recorded.</p>
+        </ng-template>
+      </section>
+
+      <section class="interactions-section">
+        <h3>
+          <i class="fas fa-comments"></i> Recent Interactions
+          <span class="count">{{ customer.interactions.length }}</span>
+        </h3>
+        <div *ngIf="customer.interactions.length; else noInteractions" class="interactions-list">
+          <div *ngFor="let interaction of customer.interactions" class="interaction-item">
+            <div>
+              <strong>{{ interaction.subject }}</strong>
+              <p>{{ interaction.type }} • {{ interaction.userFullName || 'Unknown' }}</p>
+            </div>
+            <small>{{ interaction.interactionDate | date: 'short' }}</small>
+          </div>
+        </div>
+        <ng-template #noInteractions>
+          <p class="empty">No interactions recorded.</p>
+        </ng-template>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Create/Edit Form Modal -->
+  <div *ngIf="showForm()" class="modal-overlay" (click)="showForm.set(false)">
+    <div class="modal-content animate-scale-in" (click)="$event.stopPropagation()">
+      <h2>{{ isEditing() ? 'Edit Customer' : 'Create New Customer' }}</h2>
+      <form [formGroup]="customerForm" (ngSubmit)="saveCustomer()">
+        <div class="form-group">
+          <label>Name *</label>
+          <input formControlName="name" class="form-control" />
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Email *</label>
+            <input type="email" formControlName="email" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label>Phone</label>
+            <input formControlName="phone" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Company</label>
+          <input formControlName="company" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <textarea formControlName="address" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Status *</label>
+            <select formControlName="status" class="form-control">
+              <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label>Assigned To *</label>
+            <select formControlName="assignedToUserId" class="form-control">
+              <option value="0">Select User</option>
+              <option *ngFor="let user of users()" [value]="user.id">
+                {{ user.fullName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" (click)="showForm.set(false)">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #loadingTpl>
+    <div class="loading">
+      <div class="spinner"></div>
+      Loading customers...
+    </div>
+  </ng-template>
+</section>

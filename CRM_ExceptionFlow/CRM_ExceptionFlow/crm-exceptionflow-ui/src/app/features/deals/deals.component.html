@@ -1,0 +1,191 @@
+<section class="deals animate-fade-in">
+  <header>
+    <div>
+      <h1>
+        <i class="fas fa-handshake"></i> Deals
+      </h1>
+      <p>Manage sales opportunities and deals</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary" (click)="openCreateForm()">
+        <i class="fas fa-plus"></i> New Deal
+      </button>
+    </div>
+  </header>
+
+  <div class="filters">
+    <form [formGroup]="filterForm">
+      <select formControlName="customerId" class="form-control">
+        <option value="">All Customers</option>
+        <option *ngFor="let customer of customers()" [value]="customer.id">
+          {{ customer.name }}
+        </option>
+      </select>
+      <select formControlName="stage" class="form-control">
+        <option value="">All Stages</option>
+        <option *ngFor="let stage of stages" [value]="stage">{{ stage }}</option>
+      </select>
+    </form>
+  </div>
+
+  <div class="content">
+    <section class="list" *ngIf="!loading(); else loadingTpl">
+      <article
+        *ngFor="let deal of deals(); let i = index"
+        (click)="selectDeal(deal)"
+        [class.selected]="selectedDeal()?.id === deal.id"
+        [style.animation-delay.ms]="i * 50"
+        class="animate-slide-in"
+      >
+        <div class="deal-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <div class="deal-content">
+          <h3>{{ deal.title }}</h3>
+          <p>
+            <i class="fas fa-dollar-sign"></i> {{ deal.amount | currency }}
+            <span class="separator">•</span>
+            <i class="fas fa-tag"></i> {{ deal.stage }}
+          </p>
+        </div>
+        <div class="meta">
+          <span class="badge" [ngClass]="'badge-' + deal.priority.toLowerCase()">
+            {{ deal.priority }}
+          </span>
+          <small>
+            <i class="fas fa-calendar"></i> {{ deal.createdAt | date: 'short' }}
+          </small>
+        </div>
+      </article>
+      <p *ngIf="!deals().length" class="empty">No deals found.</p>
+    </section>
+
+    <aside *ngIf="selectedDeal() as deal" class="detail animate-scale-in">
+      <header>
+        <div>
+          <h2>{{ deal.title }}</h2>
+          <div class="badges">
+            <span class="badge badge-info">{{ deal.stage }}</span>
+            <span class="badge" [ngClass]="'badge-' + deal.priority.toLowerCase()">
+              {{ deal.priority }}
+            </span>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button class="btn btn-sm btn-secondary" (click)="openEditForm(deal)">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteDeal(deal.id)">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
+      </header>
+
+      <div class="info-section">
+        <div class="info-item">
+          <i class="fas fa-dollar-sign"></i>
+          <div>
+            <strong>Amount</strong>
+            <p>{{ deal.amount | currency }}</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-tag"></i>
+          <div>
+            <strong>Stage</strong>
+            <p>{{ deal.stage }}</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-exclamation-circle"></i>
+          <div>
+            <strong>Priority</strong>
+            <p>{{ deal.priority }}</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-user-tie"></i>
+          <div>
+            <strong>Assigned To</strong>
+            <p>{{ deal.assignedTo || 'Unassigned' }}</p>
+          </div>
+        </div>
+        <div class="info-item" *ngIf="deal.expectedCloseDate">
+          <i class="fas fa-calendar-check"></i>
+          <div>
+            <strong>Expected Close</strong>
+            <p>{{ deal.expectedCloseDate | date: 'medium' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <section *ngIf="deal.description">
+        <h3><i class="fas fa-file-alt"></i> Description</h3>
+        <div class="description-box">
+          <p>{{ deal.description }}</p>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Create/Edit Form Modal -->
+  <div *ngIf="showForm()" class="modal-overlay" (click)="showForm.set(false)">
+    <div class="modal-content animate-scale-in" (click)="$event.stopPropagation()">
+      <h2>{{ isEditing() ? 'Edit Deal' : 'Create New Deal' }}</h2>
+      <form [formGroup]="dealForm" (ngSubmit)="saveDeal()">
+        <div class="form-group">
+          <label><i class="fas fa-heading"></i> Title *</label>
+          <input formControlName="title" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-align-left"></i> Description</label>
+          <textarea formControlName="description" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label><i class="fas fa-dollar-sign"></i> Amount *</label>
+            <input type="number" formControlName="amount" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label><i class="fas fa-tag"></i> Stage *</label>
+            <select formControlName="stage" class="form-control">
+              <option *ngFor="let stage of stages" [value]="stage">{{ stage }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label><i class="fas fa-exclamation-circle"></i> Priority *</label>
+            <select formControlName="priority" class="form-control">
+              <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label><i class="fas fa-user"></i> Customer *</label>
+            <select formControlName="customerId" class="form-control">
+              <option value="0">Select Customer</option>
+              <option *ngFor="let customer of customers()" [value]="customer.id">
+                {{ customer.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-calendar-check"></i> Expected Close Date</label>
+          <input type="date" formControlName="expectedCloseDate" class="form-control" />
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" (click)="showForm.set(false)">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <ng-template #loadingTpl>
+    <div class="loading">
+      <div class="spinner"></div>
+      Loading deals...
+    </div>
+  </ng-template>
+</section>

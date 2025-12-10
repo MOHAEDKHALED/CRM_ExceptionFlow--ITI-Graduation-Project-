@@ -1,0 +1,113 @@
+<section class="dashboard animate-fade-in">
+  <div class="dashboard-header">
+    <div>
+      <h1>
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+      </h1>
+      <p>Welcome back! Here's what's happening today</p>
+    </div>
+  </div>
+
+  <div class="cards" *ngIf="summary() as data; else summaryLoadingTpl">
+    <article class="card-customer animate-scale-in" [style.animation-delay.ms]="0">
+      <div class="card-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="card-content">
+        <p>Total Customers</p>
+        <h2>{{ data.totalCustomers }}</h2>
+      </div>
+      <div class="card-wave"></div>
+    </article>
+
+    <article class="card-deal animate-scale-in" [style.animation-delay.ms]="100">
+      <div class="card-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+        <i class="fas fa-handshake"></i>
+      </div>
+      <div class="card-content">
+        <p>Active Deals</p>
+        <h2>{{ data.activeDeals }}</h2>
+      </div>
+      <div class="card-wave"></div>
+    </article>
+
+    <article class="card-exception animate-scale-in" [style.animation-delay.ms]="200">
+      <div class="card-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
+      <div class="card-content">
+        <p>Open Exceptions</p>
+        <h2>{{ data.openExceptions }}</h2>
+      </div>
+      <div class="card-wave"></div>
+    </article>
+
+    <article class="card-interaction animate-scale-in" [style.animation-delay.ms]="300">
+      <div class="card-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+        <i class="fas fa-comments"></i>
+      </div>
+      <div class="card-content">
+        <p>Upcoming Interactions</p>
+        <h2>{{ data.upcomingInteractions }}</h2>
+      </div>
+      <div class="card-wave"></div>
+    </article>
+  </div>
+
+  <ng-template #summaryLoadingTpl>
+    <div class="loading">
+      <div class="spinner"></div>
+      Loading summary...
+    </div>
+  </ng-template>
+
+  <section class="panel animate-fade-in">
+    <header>
+      <div>
+        <h2>
+          <i class="fas fa-exclamation-triangle"></i> Open Exceptions
+        </h2>
+        <p>Most recent unresolved issues</p>
+      </div>
+      <a routerLink="/exceptions" class="btn-view-all">
+        <i class="fas fa-arrow-right"></i> View all
+      </a>
+    </header>
+
+    <div *ngIf="latestExceptions().length; else emptyState" class="exceptions-list">
+      <div 
+        *ngFor="let item of latestExceptions(); let i = index" 
+        class="exception-item animate-slide-in"
+        [style.animation-delay.ms]="i * 100"
+        [routerLink]="['/exceptions']"
+        [queryParams]="{ id: item.id }">
+        <div class="exception-icon">
+          <i class="fas fa-bug"></i>
+        </div>
+        <div class="exception-content">
+          <h3>{{ item.title }}</h3>
+          <p class="meta">
+            <i class="fas fa-folder"></i> {{ item.module }}
+            <span class="separator">•</span>
+            <i class="fas fa-project-diagram"></i> {{ item.projectId }}
+            <span class="separator">•</span>
+            <i class="fas fa-calendar"></i> {{ item.reportedAt | date: 'mediumDate' }}
+          </p>
+        </div>
+        <div class="exception-badge">
+          <span class="badge" [ngClass]="'badge-' + item.priority.toLowerCase()">
+            {{ item.priority }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="empty-state">
+        <i class="fas fa-check-circle"></i>
+        <p>No open exceptions 🎉</p>
+        <small>Everything is running smoothly!</small>
+      </div>
+    </ng-template>
+  </section>
+</section>

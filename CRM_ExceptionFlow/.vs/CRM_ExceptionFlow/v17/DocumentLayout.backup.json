@@ -1,0 +1,265 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\services\\airecommendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\services\\airecommendationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\dtos\\users\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\dtos\\users\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\dtos\\users\\updateuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\dtos\\users\\updateuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\dtos\\users\\createuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\dtos\\users\\createuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\migrations\\20251121022345_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\migrations\\20251121022345_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\migrations\\20251125182045_new_database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\migrations\\20251125182045_new_database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\migrations\\20251124111729_initialcreate1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\migrations\\20251124111729_initialcreate1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\crm_exceptionflow.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\crm_exceptionflow.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|c:\\users\\graphics\\desktop\\gp\\iti-graduation-project-main\\iti-graduation-project-main\\crm_exceptionflow\\crm_exceptionflow\\crm_exceptionflow.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{821BEB85-A5A4-4BD2-B983-11845C362064}|CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj|solutionrelative:crm_exceptionflow\\crm_exceptionflow.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AIRecommendationService.cs",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Services\\AIRecommendationService.cs",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\Services\\AIRecommendationService.cs",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Services\\AIRecommendationService.cs",
+              "RelativeToolTip": "CRM_ExceptionFlow\\Services\\AIRecommendationService.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAxwHEAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-08T14:23:44.907Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "CRM_ExceptionFlow\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-28T16:34:27.172Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UpdateUserRequest.cs",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\DTOs\\Users\\UpdateUserRequest.cs",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\DTOs\\Users\\UpdateUserRequest.cs",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\DTOs\\Users\\UpdateUserRequest.cs",
+              "RelativeToolTip": "CRM_ExceptionFlow\\DTOs\\Users\\UpdateUserRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:26:49.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CreateUserRequest.cs",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\DTOs\\Users\\CreateUserRequest.cs",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\DTOs\\Users\\CreateUserRequest.cs",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\DTOs\\Users\\CreateUserRequest.cs",
+              "RelativeToolTip": "CRM_ExceptionFlow\\DTOs\\Users\\CreateUserRequest.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:26:41.289Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "20251121022345_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Migrations\\20251121022345_InitialCreate.cs",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\Migrations\\20251121022345_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Migrations\\20251121022345_InitialCreate.cs",
+              "RelativeToolTip": "CRM_ExceptionFlow\\Migrations\\20251121022345_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:16:08.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "20251125182045_new_database.cs",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Migrations\\20251125182045_new_database.cs",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\Migrations\\20251125182045_new_database.cs",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Migrations\\20251125182045_new_database.cs",
+              "RelativeToolTip": "CRM_ExceptionFlow\\Migrations\\20251125182045_new_database.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:16:03.396Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "20251124111729_InitialCreate1.cs",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Migrations\\20251124111729_InitialCreate1.cs",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\Migrations\\20251124111729_InitialCreate1.cs",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Migrations\\20251124111729_InitialCreate1.cs",
+              "RelativeToolTip": "CRM_ExceptionFlow\\Migrations\\20251124111729_InitialCreate1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:15:19.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\appsettings.Development.json",
+              "RelativeToolTip": "CRM_ExceptionFlow\\appsettings.Development.json",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwAwAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-28T16:13:18.166Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\appsettings.json",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\appsettings.json",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\appsettings.json",
+              "RelativeToolTip": "CRM_ExceptionFlow\\appsettings.json",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAIwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-28T16:13:07.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\DTOs\\Users\\UserDto.cs",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\DTOs\\Users\\UserDto.cs",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\DTOs\\Users\\UserDto.cs",
+              "RelativeToolTip": "CRM_ExceptionFlow\\DTOs\\Users\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:26:51.59Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Models\\User.cs",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Models\\User.cs",
+              "RelativeToolTip": "CRM_ExceptionFlow\\Models\\User.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:27:02.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Program.cs",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\Program.cs",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\Program.cs",
+              "RelativeToolTip": "CRM_ExceptionFlow\\Program.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAxwJoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T16:10:54.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CRM_ExceptionFlow",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj",
+              "RelativeToolTip": "CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-28T16:10:07.727Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Microsoft.NET.TargetFrameworkInference.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.302\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKoAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-11-28T16:09:38.103Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CRM_ExceptionFlow.csproj",
+              "DocumentMoniker": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj",
+              "RelativeDocumentMoniker": "CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj",
+              "ToolTip": "C:\\Users\\GRAPHICS\\Desktop\\GP\\ITI-Graduation-Project-main\\ITI-Graduation-Project-main\\CRM_ExceptionFlow\\CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj",
+              "RelativeToolTip": "CRM_ExceptionFlow\\CRM_ExceptionFlow.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-28T16:09:30.939Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
